@@ -1,0 +1,4 @@
+0 3x3 /Images/Categories/3x3.png
+6 4x4 /Images/Categories/4x4.png
+20 5x5 /Images/Categories/5x5.png
+22 6x6 /Images/Categories/6x6.png

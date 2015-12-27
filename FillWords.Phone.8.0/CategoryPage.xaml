@@ -1,0 +1,135 @@
+﻿<phone:PhoneApplicationPage
+    xmlns:AppPromo="clr-namespace:AppPromo;assembly=AppPromo.WP8"
+    xmlns:WPToolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    x:Class="FillWords.Phone._8._0.CategoryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    WPToolkit:TiltEffect.IsTiltEnabled="True"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+
+    <WPToolkit:TransitionService.NavigationInTransition>
+        <WPToolkit:NavigationInTransition>
+            <WPToolkit:NavigationInTransition.Backward>
+                <WPToolkit:TurnstileTransition Mode="BackwardIn"/>
+            </WPToolkit:NavigationInTransition.Backward>
+            <WPToolkit:NavigationInTransition.Forward>
+                <WPToolkit:TurnstileTransition Mode="ForwardIn"/>
+            </WPToolkit:NavigationInTransition.Forward>
+        </WPToolkit:NavigationInTransition>
+    </WPToolkit:TransitionService.NavigationInTransition>
+    <WPToolkit:TransitionService.NavigationOutTransition>
+        <WPToolkit:NavigationOutTransition>
+            <WPToolkit:NavigationOutTransition.Backward>
+                <WPToolkit:TurnstileTransition Mode="BackwardOut"/>
+            </WPToolkit:NavigationOutTransition.Backward>
+            <WPToolkit:NavigationOutTransition.Forward>
+                <WPToolkit:TurnstileTransition Mode="ForwardOut"/>
+            </WPToolkit:NavigationOutTransition.Forward>
+        </WPToolkit:NavigationOutTransition>
+    </WPToolkit:TransitionService.NavigationOutTransition>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/879142-480x800.jpg"/>
+        </Grid.Background>
+
+        <AppPromo:RateReminder x:Name="RateReminder" RunsBeforeReminder="3" TryReminderCompleted="RateReminder_TryReminderCompleted"  />
+        
+        <!--Верхнее меню-->
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Border x:Name="countLevelsCompletedPanel" BorderBrush="#FFC20B8A" Background="#FFC20B8A" CornerRadius="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="countLevelsCompleted" Margin="5" FontSize="30" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Border x:Name="ratingPanel" Background="#FF0187C5" CornerRadius="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="ratingText" Margin="10,5,10,5" FontSize="44" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                </Border>
+            </Grid>
+            <StackPanel x:Name="countHintsPanel" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="countHintsText" Margin="0,0,5,0" FontSize="40" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                <Image Margin="5,5,0,5" Source="/Images/menu/Lifebuoy-50-magenta.png"></Image>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Text="{Binding Path=LocalizedResources.Levels, Source={StaticResource LocalizedStrings}}" Margin="5" FontSize="50" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                <StackPanel x:Name="rootPanel" Margin="0,10,0,10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top"></StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <!--Нижнее меню-->
+        <Grid Grid.Row="2" Margin="5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="exit" Style="{StaticResource BottomMenuButton}" Click="exit_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/menu/Cancel-50-magenta.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="{Binding Path=LocalizedResources.Exit, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="14" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="logOut" Style="{StaticResource BottomMenuButton}" Click="logOut_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/menu/Logout-50-magenta.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="{Binding Path=LocalizedResources.LogOut, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="14" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="estimate" Style="{StaticResource BottomMenuButton}" Click="estimate_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/menu/Like Filled-50-magenta.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="{Binding Path=LocalizedResources.Estimate, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="14" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="share" Style="{StaticResource BottomMenuButton}" Click="share_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/menu/Share-50-magenta.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="{Binding Path=LocalizedResources.Share, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="14" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="byu" Style="{StaticResource BottomMenuButton}" Click="byu_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/menu/Money Bag-50-magenta.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="{Binding Path=LocalizedResources.Purchases, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="12" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
