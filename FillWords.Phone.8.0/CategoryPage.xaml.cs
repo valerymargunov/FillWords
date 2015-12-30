@@ -23,6 +23,7 @@ namespace FillWords.Phone._8._0
     {
         CategoryRepository categoryRepository { get; set; }
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        IList<Category> categories { get; set; }
 
         public CategoryPage()
         {
@@ -32,7 +33,7 @@ namespace FillWords.Phone._8._0
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var categories = categoryRepository.GetCategories();
+            categories = categoryRepository.GetCategories();
             GenerateCategories(categories, rootPanel);
             PopulateTopBarValues();
         }
@@ -147,9 +148,19 @@ namespace FillWords.Phone._8._0
             var grid = sender as Grid;
             var cat = grid.Tag as Category;
             int lastLevelCompleted = (int)settings["lastLevelCompleted"];
-            if (lastLevelCompleted + 1 >= cat.StartLevelId)
+            Category nextCat = null;
+            if(lastLevelCompleted + 1 != categories.Count)
+            {
+                var currentCatIndex = categories.IndexOf(cat);
+                nextCat = categories[currentCatIndex + 1];
+            }
+            if (lastLevelCompleted + 1 == cat.StartLevelId || lastLevelCompleted + 1 >= nextCat.StartLevelId)
             {
                 NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", cat.StartLevelId), UriKind.RelativeOrAbsolute));
+            }
+            else if (lastLevelCompleted + 1 > cat.StartLevelId && lastLevelCompleted + 1 < nextCat.StartLevelId)
+            {
+                NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", lastLevelCompleted + 1), UriKind.RelativeOrAbsolute));
             }
             else
             {
