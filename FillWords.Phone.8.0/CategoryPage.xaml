@@ -67,7 +67,7 @@
                     <TextBlock x:Name="ratingText" Margin="10,5,10,5" FontSize="44" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                 </Border>
             </Grid>
-            <StackPanel x:Name="countHintsPanel" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel x:Name="countHintsPanel" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Tap="countHintsPanel_Tap">
                 <TextBlock x:Name="countHintsText" Margin="0,0,5,0" FontSize="40" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="White" FontWeight="Bold"/>
                 <Image Margin="5,5,0,5" Source="/Images/menu/Lifebuoy-50-magenta.png"></Image>
             </StackPanel>
@@ -93,14 +93,14 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.Exit, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="14" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button x:Name="logOut" Style="{StaticResource BottomMenuButton}" Click="logOut_Click" >
                         <Button.Background>
                             <ImageBrush ImageSource="/Images/menu/Logout-50-magenta.png"></ImageBrush>
                         </Button.Background>
                     </Button>
                     <TextBlock Text="{Binding Path=LocalizedResources.LogOut, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="14" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
-                </StackPanel>
+                </StackPanel>-->
 
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button x:Name="estimate" Style="{StaticResource BottomMenuButton}" Click="estimate_Click" >

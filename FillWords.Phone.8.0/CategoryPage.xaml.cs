@@ -183,6 +183,11 @@ namespace FillWords.Phone._8._0
             }
         }
 
+        private void countHintsPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
         #region Top Menu
         private void PopulateTopBarValues()
         {
@@ -232,7 +237,7 @@ namespace FillWords.Phone._8._0
 
         private void byu_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PremiumPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.Relative));
         }
 
         private void CheckEstimate()
@@ -279,5 +284,6 @@ namespace FillWords.Phone._8._0
             Application.Current.Terminate();
         }
         #endregion
+        
     }
 }

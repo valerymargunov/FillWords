@@ -88,7 +88,7 @@ namespace FillWords.Phone._8._0.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Данная категория пока недоступна для Вас...
+        ///   Looks up a localized string similar to This category is not yet available for you...
         /// </summary>
         public static string CategoryIsNotAvailable {
             get {
@@ -97,7 +97,7 @@ namespace FillWords.Phone._8._0.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Попробуйте собрать это слово по-другому!.
+        ///   Looks up a localized string similar to Try to collect the word differently!.
         /// </summary>
         public static string DifferentPathWord {
             get {
@@ -133,11 +133,56 @@ namespace FillWords.Phone._8._0.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Поздравляем! Игра завершена!!!.
+        ///   Looks up a localized string similar to Congratulations! The game finished!!!.
         /// </summary>
         public static string GameCompleted {
             get {
                 return ResourceManager.GetString("GameCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 150 hints.
+        /// </summary>
+        public static string Hints150 {
+            get {
+                return ResourceManager.GetString("Hints150", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20 hints.
+        /// </summary>
+        public static string Hints20 {
+            get {
+                return ResourceManager.GetString("Hints20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 40 hints.
+        /// </summary>
+        public static string Hints40 {
+            get {
+                return ResourceManager.GetString("Hints40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 80 hints.
+        /// </summary>
+        public static string Hints80 {
+            get {
+                return ResourceManager.GetString("Hints80", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lots of hints.
+        /// </summary>
+        public static string HintsAll {
+            get {
+                return ResourceManager.GetString("HintsAll", resourceCulture);
             }
         }
         
@@ -156,6 +201,42 @@ namespace FillWords.Phone._8._0.Resources {
         public static string LogOut {
             get {
                 return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check the connection to the Internet!.
+        /// </summary>
+        public static string NoInternet {
+            get {
+                return ResourceManager.GetString("NoInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to + removing ads.
+        /// </summary>
+        public static string PlusRemoveAds {
+            get {
+                return ResourceManager.GetString("PlusRemoveAds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have already bought this product!.
+        /// </summary>
+        public static string ProductExitsts {
+            get {
+                return ResourceManager.GetString("ProductExitsts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error when buying the product: .
+        /// </summary>
+        public static string PurchaseError {
+            get {
+                return ResourceManager.GetString("PurchaseError", resourceCulture);
             }
         }
         
@@ -201,6 +282,15 @@ namespace FillWords.Phone._8._0.Resources {
         public static string ShareMessage {
             get {
                 return ResourceManager.GetString("ShareMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for your purchase!.
+        /// </summary>
+        public static string ThankYouForPurchase {
+            get {
+                return ResourceManager.GetString("ThankYouForPurchase", resourceCulture);
             }
         }
     }

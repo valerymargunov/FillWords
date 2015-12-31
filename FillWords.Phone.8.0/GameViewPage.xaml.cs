@@ -36,6 +36,8 @@ namespace FillWords.Phone._8._0
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
         int CountLevels { get; set; }
         MediaElement LevelCompleted { get; set; }
+        List<Coordinate> ListHints { get; set; }
+        int HintsEnumerator { get; set; }
 
         public GameViewPage()
         {
@@ -55,6 +57,7 @@ namespace FillWords.Phone._8._0
                 AutoPlay = false
             };
             LayoutRoot.Children.Add(LevelCompleted);
+            ListHints = new List<Coordinate>();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -88,6 +91,7 @@ namespace FillWords.Phone._8._0
                 {
                     var cells = letter.Split(':');
                     var letterBlock = FindName(string.Format("letter{0}{1}", cells[0], cells[1])) as TextBlock;
+                    ListHints.Add(new Coordinate(Int32.Parse(cells[0].ToString()), Int32.Parse(cells[1].ToString())));
                     var gridLetter = letterBlock.Parent as Grid;
                     //gridLetter.Background = new SolidColorBrush(currentColor);
                     gridLetter.Tag = new SolidColorBrush(currentColor);
@@ -217,6 +221,7 @@ namespace FillWords.Phone._8._0
                 foreach (var letterName in TempListCurrentLetter)
                 {
                     var letter = FindName(letterName) as TextBlock;
+                    letter.Foreground = new SolidColorBrush(Colors.White);
                     var gridLetter = letter.Parent as Grid;
                     gridLetter.Background = (SolidColorBrush)gridLetter.Tag;
                 }
@@ -287,6 +292,34 @@ namespace FillWords.Phone._8._0
             NavigationService.Navigate(new Uri("/CategoryPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
+        private void countHintsPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            int countHints = (int)settings["countHints"];
+            if (countHints > 0)
+            {
+                if (HintsEnumerator != ListHints.Count)
+                {
+                    TextBlock letter = null;
+                    Grid gridLetter = null;
+                    do
+                    {
+                        letter = FindName(string.Format("letter{0}{1}", ListHints[HintsEnumerator].Column, ListHints[HintsEnumerator].Row)) as TextBlock;
+                        gridLetter = letter.Parent as Grid;
+                        HintsEnumerator++;
+                    }
+                    while (gridLetter.Background == (SolidColorBrush)gridLetter.Tag);
+                    letter.Foreground = new SolidColorBrush(Color.FromArgb(255, 139, 197, 1));                 
+                    countHintsText.Text = (countHints - 1).ToString();
+                    settings["countHints"] = countHints - 1;
+                    settings.Save();
+                }
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+        }
+
         #region Top Menu
         private void PopulateTopBarValues()
         {
@@ -336,7 +369,7 @@ namespace FillWords.Phone._8._0
 
         private void byu_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PremiumPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.Relative));
         }
 
         private void CheckEstimate()
@@ -383,5 +416,6 @@ namespace FillWords.Phone._8._0
             Application.Current.Terminate();
         }
         #endregion
+
     }
 }

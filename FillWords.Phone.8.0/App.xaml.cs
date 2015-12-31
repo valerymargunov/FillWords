@@ -87,7 +87,8 @@ namespace FillWords.Phone._8._0
                 settings.Add("rating", 0);
                 settings.Save();
             }
-
+            //settings["countHints"] = 20;
+            //settings.Save();
             if (!settings.Contains("countHints"))
             {
                 settings.Add("countHints", 5);
