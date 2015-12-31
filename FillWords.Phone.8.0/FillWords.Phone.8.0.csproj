@@ -175,6 +175,7 @@
     <Content Include="Content\categories.txt" />
     <Content Include="Content\words.txt" />
     <Content Include="Content\gameviews.txt" />
+    <Content Include="fw-300.png" />
     <Content Include="Images\879142-480x800.jpg" />
     <Content Include="Images\Categories\3x3.png" />
     <Content Include="Images\Categories\4x4.png" />
@@ -184,13 +185,8 @@
     <Content Include="Images\menu\Cancel-50-magenta.png" />
     <Content Include="Images\menu\Lifebuoy-50-magenta.png" />
     <Content Include="Images\menu\Like Filled-50-magenta.png" />
-    <Content Include="Images\menu\Logout-50-magenta.png" />
     <Content Include="Images\menu\Money Bag-50-magenta.png" />
     <Content Include="Images\menu\Share-50-magenta.png" />
-    <Content Include="Images\Olympic Medal-100-yellow.png" />
-    <Content Include="Images\Trophy-100-yellow.png" />
-    <Content Include="Images\Trophy-100.png" />
-    <Content Include="Images\Trophy-50-yellow.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />

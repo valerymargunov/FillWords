@@ -114,6 +114,8 @@ namespace FillWords.Phone._8._0
                     {
                         double borderLetterSize = Dimension.Columns >= 5 ? LayoutRoot.ActualWidth / Dimension.Columns - 10 : 100;
                         double letterFontSize = Dimension.Columns >= 5 ? 55 * borderLetterSize / 100 : 55;
+                        //double borderLetterSize = Dimension.Columns >= 5 ? LayoutRoot.ActualWidth / Dimension.Columns - 10 : 150;
+                        //double letterFontSize = Dimension.Columns >= 5 ? 55 * borderLetterSize / 100 : 85;
                         var letter = new TextBlock
                         {
                             Name = string.Format("letter{1}{0}", i.ToString(), j.ToString()),
@@ -134,6 +136,7 @@ namespace FillWords.Phone._8._0
                             Height = borderLetterSize,
                             BorderThickness = new Thickness(2),
                             BorderBrush = new SolidColorBrush(Colors.White),
+                            //BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 242, 0)),
                             CornerRadius = new CornerRadius(5),
                             Margin = new Thickness(2)
                         };

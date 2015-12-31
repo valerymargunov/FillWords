@@ -4,8 +4,8 @@
   <Languages xmlns="">
     <Language code="ru-RU" />
   </Languages>
-  <App xmlns="" ProductID="{bf057164-b2ab-4616-94fb-058eec71a4d0}" Title="FillWords.Phone._8._0" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="FillWords.Phone._8._0 author" Description="Sample description" Publisher="FillWords.Phone._8._0" PublisherID="{fc0fd7d6-0478-4804-a347-4a03bde6a51c}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+  <App xmlns="" ProductID="{bf057164-b2ab-4616-94fb-058eec71a4d0}" Title="Филлворды" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="FillWords.Phone._8._0 author" Description="" Publisher="FillWords.Phone._8._0" PublisherID="{fc0fd7d6-0478-4804-a347-4a03bde6a51c}">
+    <IconPath IsRelative="true" IsResource="false">fw-300.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -19,15 +19,21 @@
     <Tokens>
       <PrimaryToken TokenID="FillWords.Phone._8._0Token" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">fw-300.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>FillWords.Phone._8._0</Title>
-          <BackContent></BackContent>
-          <BackBackgroundImageURI></BackBackgroundImageURI>
-          <BackTitle></BackTitle>
-          <DeviceLockImageURI></DeviceLockImageURI>
-          <HasLarge></HasLarge>
+          <BackgroundImageURI IsRelative="true" IsResource="false">fw-300.png</BackgroundImageURI>
+          <Title>
+          </Title>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI>
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <DeviceLockImageURI>
+          </DeviceLockImageURI>
+          <HasLarge>
+          </HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
