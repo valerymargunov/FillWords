@@ -10,7 +10,15 @@ namespace FillWords.Phone._8._0.LogicGame
     public static class ColorsHelper
     {
         public static List<Color> DictColors = new List<Color>
-        {            
+        {     
+            {
+              Color.FromArgb(255, 1, 176, 197)//бирюзовый
+            },
+
+            {
+              Color.FromArgb(255, 1, 103, 242)//голубой
+            },
+
             {
               Colors.Orange
             },
