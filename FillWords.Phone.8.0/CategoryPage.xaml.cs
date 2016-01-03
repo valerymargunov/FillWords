@@ -107,7 +107,7 @@ namespace FillWords.Phone._8._0
                         catPanel.Children.Add(trophyGrid);
                         trophyGrid.Children.Add(trophy);
                     }
-                    
+
                     if (i == 1)
                     {
                         var stackPanel = new StackPanel
@@ -137,7 +137,7 @@ namespace FillWords.Phone._8._0
                 }
                 categories = null;
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
 
             }
@@ -148,11 +148,25 @@ namespace FillWords.Phone._8._0
             var grid = sender as Grid;
             var cat = grid.Tag as Category;
             int lastLevelCompleted = (int)settings["lastLevelCompleted"];
+            int countLevels = (int)settings["countLevels"];
             Category nextCat = null;
-            if(lastLevelCompleted + 1 != categories.Count)
+            if (lastLevelCompleted + 1 != countLevels)
             {
-                var currentCatIndex = categories.IndexOf(cat);
-                nextCat = categories[currentCatIndex + 1];
+                if (lastLevelCompleted + 1 >= cat.StartLevelId && lastLevelCompleted + 1 < countLevels && categories.IndexOf(cat) == categories.Count - 1)//для последней категории
+                {
+                    NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", lastLevelCompleted + 1), UriKind.RelativeOrAbsolute));
+                    return;
+                }
+                else//для непоследней категории
+                {
+                    var currentCatIndex = categories.IndexOf(cat);
+                    nextCat = categories[currentCatIndex + 1];
+                }
+            }
+            else//для последней категории
+            {
+                NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", cat.StartLevelId), UriKind.RelativeOrAbsolute));
+                return;
             }
             if (lastLevelCompleted + 1 == cat.StartLevelId || lastLevelCompleted + 1 >= nextCat.StartLevelId)
             {
@@ -284,6 +298,6 @@ namespace FillWords.Phone._8._0
             Application.Current.Terminate();
         }
         #endregion
-        
+
     }
 }
