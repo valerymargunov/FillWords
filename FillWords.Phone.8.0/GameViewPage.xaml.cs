@@ -16,6 +16,7 @@ using Microsoft.Phone.Tasks;
 using FillWords.Phone._8._0.Resources;
 using Windows.ApplicationModel.Store;
 using FillWords.Phone._8._0.Helpers;
+using System.Threading;
 
 namespace FillWords.Phone._8._0
 {
@@ -38,6 +39,7 @@ namespace FillWords.Phone._8._0
         MediaElement LevelCompleted { get; set; }
         List<Coordinate> ListHints { get; set; }
         int HintsEnumerator { get; set; }
+        bool IsCompleted { get; set; }
 
         public GameViewPage()
         {
@@ -230,29 +232,8 @@ namespace FillWords.Phone._8._0
                 }
                 if (CountWords == ListCurrentWords.Count)
                 {
-                    LevelCompleted.MediaEnded += delegate
-                    {
-                        if ((int)settings["lastLevelCompleted"] < LevelId)
-                        {
-                            int rating = Dimension.Columns * Dimension.Rows;
-                            settings["rating"] = (int)settings["rating"] + rating;
-                            settings.Save();
-                        }
-                        if (CountLevels == LevelId + 1)
-                        {
-                            settings["lastLevelCompleted"] = LevelId > (int)settings["lastLevelCompleted"] ? LevelId : (int)settings["lastLevelCompleted"];
-                            settings.Save();
-                            PopulateTopBarValues();
-                            var popup = new PopupMessage();
-                            popup.Show(AppResources.GameCompleted);
-                        }
-                        else
-                        {
-                            settings["lastLevelCompleted"] = LevelId > (int)settings["lastLevelCompleted"] ? LevelId : (int)settings["lastLevelCompleted"];
-                            settings.Save();
-                            NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", LevelId + 1), UriKind.RelativeOrAbsolute));
-                        }
-                    };
+                    LevelCompleted.MediaEnded += LevelComplete;
+                    LevelCompleted.MediaFailed += LevelComplete;
                     LevelCompleted.Play();
                 }
             }
@@ -279,6 +260,37 @@ namespace FillWords.Phone._8._0
             TempCurrentWord = string.Empty;
             TempListCurrentLetter.Clear();
             TempCurrentWordColor.Clear();
+        }
+        
+        private void LevelComplete(object sender, RoutedEventArgs e)
+        {
+            if (!IsCompleted)
+            {
+                IsCompleted = true;
+                if ((int)settings["lastLevelCompleted"] < LevelId)
+                {
+                    int rating = Dimension.Columns * Dimension.Rows;
+                    settings["rating"] = (int)settings["rating"] + rating;
+                    settings.Save();
+                }
+                if (CountLevels == LevelId + 1)
+                {
+                    settings["lastLevelCompleted"] = LevelId > (int)settings["lastLevelCompleted"] ? LevelId : (int)settings["lastLevelCompleted"];
+                    settings.Save();
+                    PopulateTopBarValues();
+                    var popup = new PopupMessage();
+                    popup.Show(AppResources.GameCompleted);
+                    //LevelCompleted.Play();
+                }
+                else
+                {
+                    settings["lastLevelCompleted"] = LevelId > (int)settings["lastLevelCompleted"] ? LevelId : (int)settings["lastLevelCompleted"];
+                    settings.Save();
+                    //LevelCompleted.Play();
+                    //Thread.Sleep(3000);
+                    NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", LevelId + 1), UriKind.RelativeOrAbsolute));
+                }
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
