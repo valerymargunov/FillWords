@@ -42,17 +42,24 @@ namespace FillWords.Phone._8._0.Helpers
                     //success.Invoke(productId);//TODO:remove after testing
                     var listing = await CurrentApp.LoadListingInformationAsync();
                     var myProduct = listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == productId);
-                    if (!CurrentApp.LicenseInformation.ProductLicenses[myProduct.Value.ProductId].IsActive)
+                    if (isConsurable)
                     {
                         await CurrentApp.RequestProductPurchaseAsync(productId, false);
                         var productLicenses = CurrentApp.LicenseInformation.ProductLicenses;
                         ProductLicense tokenLicense = productLicenses[productId];
                         if (tokenLicense.IsActive)
                         {
-                            if (isConsurable)//если продукт расходуемый
-                            {
-                                CurrentApp.ReportProductFulfillment(productId);
-                            }
+                            CurrentApp.ReportProductFulfillment(productId);
+                            success.Invoke(productId);
+                        }
+                    }
+                    else if (!isConsurable && !CurrentApp.LicenseInformation.ProductLicenses[myProduct.Value.ProductId].IsActive)
+                    {
+                        await CurrentApp.RequestProductPurchaseAsync(productId, false);
+                        var productLicenses = CurrentApp.LicenseInformation.ProductLicenses;
+                        ProductLicense tokenLicense = productLicenses[productId];
+                        if (tokenLicense.IsActive)
+                        {
                             success.Invoke(productId);
                         }
                     }

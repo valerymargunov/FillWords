@@ -14,9 +14,12 @@ using System.Windows.Input;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
 using FillWords.Phone._8._0.Resources;
-using Windows.ApplicationModel.Store;
+//using Windows.ApplicationModel.Store;
 using FillWords.Phone._8._0.Helpers;
 using System.Threading;
+#if FREE8
+using Windows.ApplicationModel.Store;
+#endif
 
 namespace FillWords.Phone._8._0
 {
@@ -279,6 +282,10 @@ namespace FillWords.Phone._8._0
                     settings.Save();
                     PopulateTopBarValues();
                     var popup = new PopupMessage();
+                    popup.OnOkClick += delegate
+                    {
+                        NavigationService.Navigate(new Uri("/CategoryPage.xaml", UriKind.RelativeOrAbsolute));
+                    };
                     popup.Show(AppResources.GameCompleted);
                     //LevelCompleted.Play();
                 }
@@ -309,29 +316,45 @@ namespace FillWords.Phone._8._0
 
         private void countHintsPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            int countHints = (int)settings["countHints"];
-            if (countHints > 0)
+            try
             {
-                if (HintsEnumerator != ListHints.Count)
+                int countHints = (int)settings["countHints"];
+                if (countHints > 0)
                 {
-                    TextBlock letter = null;
-                    Grid gridLetter = null;
-                    do
+                    if (HintsEnumerator != ListHints.Count)
                     {
-                        letter = FindName(string.Format("letter{0}{1}", ListHints[HintsEnumerator].Column, ListHints[HintsEnumerator].Row)) as TextBlock;
-                        gridLetter = letter.Parent as Grid;
-                        HintsEnumerator++;
+                        TextBlock letter = null;
+                        Grid gridLetter = null;
+                        do
+                        {
+                            if (HintsEnumerator != ListHints.Count)
+                            {
+                                letter = FindName(string.Format("letter{0}{1}", ListHints[HintsEnumerator].Column, ListHints[HintsEnumerator].Row)) as TextBlock;
+                                gridLetter = letter.Parent as Grid;
+                                HintsEnumerator++;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                        while (gridLetter.Background == (SolidColorBrush)gridLetter.Tag);
+                        letter.Foreground = new SolidColorBrush(Color.FromArgb(255, 139, 197, 1));
+                        countHintsText.Text = (countHints - 1).ToString();
+                        settings["countHints"] = countHints - 1;
+                        settings.Save();
                     }
-                    while (gridLetter.Background == (SolidColorBrush)gridLetter.Tag);
-                    letter.Foreground = new SolidColorBrush(Color.FromArgb(255, 139, 197, 1));                 
-                    countHintsText.Text = (countHints - 1).ToString();
-                    settings["countHints"] = countHints - 1;
-                    settings.Save();
+                }
+                else
+                {
+#if FREE8
+                    NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.RelativeOrAbsolute));
+#endif
                 }
             }
-            else
+            catch (Exception ex)
             {
-                NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.RelativeOrAbsolute));
+ 
             }
         }
 
@@ -377,14 +400,32 @@ namespace FillWords.Phone._8._0
         {
             var shareLinkTask = new ShareLinkTask();
             shareLinkTask.Title = AppResources.ApplicationTitle;
+#if FREE8
             shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", CurrentApp.AppId.ToString()), UriKind.RelativeOrAbsolute);
+#else
+#if RU
+            shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", "d240f4cd-e4fc-405f-98a5-ea9002afff6d"), UriKind.RelativeOrAbsolute);
+#endif
+#if IT
+            shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", "0585296f-f9c1-483e-9e99-795219e1410f"), UriKind.RelativeOrAbsolute);
+#endif
+#endif
             shareLinkTask.Message = AppResources.ShareMessage;
             shareLinkTask.Show();
         }
 
         private void byu_Click(object sender, RoutedEventArgs e)
         {
+#if FREE8
             NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.Relative));
+#endif
+
+#if FREE7
+            //var marketplaceDetailTask = new MarketplaceDetailTask();
+            //marketplaceDetailTask.ContentIdentifier = "d240f4cd-e4fc-405f-98a5-ea9002afff6d";
+            //marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+            //marketplaceDetailTask.Show();
+#endif
         }
 
         private void CheckEstimate()
@@ -428,7 +469,19 @@ namespace FillWords.Phone._8._0
 
         private void Exit()
         {
-            Application.Current.Terminate();
+            try
+            {
+#if WINDOWS_PHONE8
+                Application.Current.Terminate();
+#else
+            System.Reflection.Assembly asmb = System.Reflection.Assembly.Load("Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553");
+            asmb = System.Reflection.Assembly.Load("Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553");
+            Type type = asmb.GetType("Microsoft.Xna.Framework.Game");
+            object obj = type.GetConstructor(new Type[] { }).Invoke(new object[] { });
+            type.GetMethod("Exit").Invoke(obj, new object[] { });
+#endif
+            }
+            catch { }
         }
         #endregion
 

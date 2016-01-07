@@ -14,7 +14,9 @@ using System.Windows.Media;
 using FillWords.Phone._8._0.Repositories;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
+#if FREE8
 using Windows.ApplicationModel.Store;
+#endif
 using FillWords.Phone._8._0.Helpers;
 
 namespace FillWords.Phone._8._0
@@ -145,49 +147,64 @@ namespace FillWords.Phone._8._0
 
         private void SeattleTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var grid = sender as Grid;
-            var cat = grid.Tag as Category;
-            int lastLevelCompleted = (int)settings["lastLevelCompleted"];
-            int countLevels = (int)settings["countLevels"];
-            Category nextCat = null;
-            if (lastLevelCompleted + 1 != countLevels)
+            try
             {
-                if (lastLevelCompleted + 1 >= cat.StartLevelId && lastLevelCompleted + 1 < countLevels && categories.IndexOf(cat) == categories.Count - 1)//для последней категории
+                var grid = sender as Grid;
+                var cat = grid.Tag as Category;
+                int lastLevelCompleted = (int)settings["lastLevelCompleted"];
+                int countLevels = (int)settings["countLevels"];
+                Category nextCat = null;
+                if (lastLevelCompleted + 1 != countLevels)
                 {
-                    NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", lastLevelCompleted + 1), UriKind.RelativeOrAbsolute));
+                    if (lastLevelCompleted + 1 >= cat.StartLevelId && lastLevelCompleted + 1 < countLevels && categories.IndexOf(cat) == categories.Count - 1)//для последней категории
+                    {
+                        NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", lastLevelCompleted + 1), UriKind.RelativeOrAbsolute));
+                        return;
+                    }
+                    else//для непоследней категории
+                    {
+                        var currentCatIndex = categories.IndexOf(cat);
+                        if (currentCatIndex + 1 != categories.Count)
+                            nextCat = categories[currentCatIndex + 1];
+                        else
+                        {
+                            var popup = new PopupMessage();
+                            popup.Show(AppResources.CategoryIsNotAvailable);
+                            return;
+                        }
+                    }
+                }
+                else//для последней категории
+                {
+                    NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", cat.StartLevelId), UriKind.RelativeOrAbsolute));
                     return;
                 }
-                else//для непоследней категории
+                if (lastLevelCompleted + 1 == cat.StartLevelId || lastLevelCompleted + 1 >= nextCat.StartLevelId)
                 {
-                    var currentCatIndex = categories.IndexOf(cat);
-                    nextCat = categories[currentCatIndex + 1];
+                    NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", cat.StartLevelId), UriKind.RelativeOrAbsolute));
+                }
+                else if (lastLevelCompleted + 1 > cat.StartLevelId && lastLevelCompleted + 1 < nextCat.StartLevelId)
+                {
+                    NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", lastLevelCompleted + 1), UriKind.RelativeOrAbsolute));
+                }
+                else
+                {
+                    var popup = new PopupMessage();
+                    popup.Show(AppResources.CategoryIsNotAvailable);
                 }
             }
-            else//для последней категории
+            catch (Exception ex)
             {
-                NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", cat.StartLevelId), UriKind.RelativeOrAbsolute));
-                return;
-            }
-            if (lastLevelCompleted + 1 == cat.StartLevelId || lastLevelCompleted + 1 >= nextCat.StartLevelId)
-            {
-                NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", cat.StartLevelId), UriKind.RelativeOrAbsolute));
-            }
-            else if (lastLevelCompleted + 1 > cat.StartLevelId && lastLevelCompleted + 1 < nextCat.StartLevelId)
-            {
-                NavigationService.Navigate(new Uri(string.Format("/GameViewPage.xaml?LevelId={0}", lastLevelCompleted + 1), UriKind.RelativeOrAbsolute));
-            }
-            else
-            {
-                var popup = new PopupMessage();
-                popup.Show(AppResources.CategoryIsNotAvailable);
+
             }
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Terminate();
+            Exit();
         }
 
+#if FREE8
         private void RateReminder_TryReminderCompleted(object sender, AppPromo.RateReminderResult e)
         {
             if (e.Runs == RateReminder.RunsBeforeReminder && !e.RatingShown)
@@ -196,10 +213,13 @@ namespace FillWords.Phone._8._0
                 RateReminder.ResetCounters();
             }
         }
+#endif
 
         private void countHintsPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+#if FREE8
             NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.RelativeOrAbsolute));
+#endif
         }
 
         #region Top Menu
@@ -244,14 +264,32 @@ namespace FillWords.Phone._8._0
         {
             var shareLinkTask = new ShareLinkTask();
             shareLinkTask.Title = AppResources.ApplicationTitle;
+#if FREE8
             shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", CurrentApp.AppId.ToString()), UriKind.RelativeOrAbsolute);
+#else
+#if RU
+            shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", "d240f4cd-e4fc-405f-98a5-ea9002afff6d"), UriKind.RelativeOrAbsolute);
+#endif
+#if IT
+            shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", "0585296f-f9c1-483e-9e99-795219e1410f"), UriKind.RelativeOrAbsolute);
+#endif
+#endif
             shareLinkTask.Message = AppResources.ShareMessage;
             shareLinkTask.Show();
         }
 
         private void byu_Click(object sender, RoutedEventArgs e)
         {
+#if FREE8
             NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.Relative));
+#endif
+
+#if FREE7
+            //var marketplaceDetailTask = new MarketplaceDetailTask();
+            //marketplaceDetailTask.ContentIdentifier = "d240f4cd-e4fc-405f-98a5-ea9002afff6d";
+            //marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+            //marketplaceDetailTask.Show();
+#endif
         }
 
         private void CheckEstimate()
@@ -295,7 +333,19 @@ namespace FillWords.Phone._8._0
 
         private void Exit()
         {
-            Application.Current.Terminate();
+            try
+            {
+#if WINDOWS_PHONE8
+                Application.Current.Terminate();
+#else
+            System.Reflection.Assembly asmb = System.Reflection.Assembly.Load("Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553");
+            asmb = System.Reflection.Assembly.Load("Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553");
+            Type type = asmb.GetType("Microsoft.Xna.Framework.Game");
+            object obj = type.GetConstructor(new Type[] { }).Invoke(new object[] { });
+            type.GetMethod("Exit").Invoke(obj, new object[] { });
+#endif
+            }
+            catch { }
         }
         #endregion
 

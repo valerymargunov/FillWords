@@ -135,6 +135,7 @@ namespace FillWords.Phone._8._0
                             int countHints = (int)settings["countHints"];
                             settings["countHints"] = countHints + 20;
                             settings.Save();
+                            countHintsText.Text = (countHints + 20).ToString();
                         }, ErrorCallback, true);
                     }
                     break;
@@ -145,6 +146,7 @@ namespace FillWords.Phone._8._0
                             int countHints = (int)settings["countHints"];
                             settings["countHints"] = countHints + 40;
                             settings.Save();
+                            countHintsText.Text = (countHints + 40).ToString();
                         }, ErrorCallback, true);
                     }
                     break;
@@ -155,6 +157,7 @@ namespace FillWords.Phone._8._0
                             int countHints = (int)settings["countHints"];
                             settings["countHints"] = countHints + 80;
                             settings.Save();
+                            countHintsText.Text = (countHints + 80).ToString();
                         }, ErrorCallback, true);
                     }
                     break;
@@ -165,6 +168,7 @@ namespace FillWords.Phone._8._0
                             int countHints = (int)settings["countHints"];
                             settings["countHints"] = countHints + 150;
                             settings.Save();
+                            countHintsText.Text = (countHints + 150).ToString();
                         }, ErrorCallback, true);
                     }
                     break;
@@ -173,8 +177,9 @@ namespace FillWords.Phone._8._0
                         StoreHelper.Donate("hintsAll", (string productId) =>
                         {
                             int countHints = (int)settings["countHints"];
-                            settings["countHints"] = countHints + 1000;
+                            settings["countHints"] = countHints + 900;
                             settings.Save();
+                            countHintsText.Text = (countHints + 900).ToString();
                         }, ErrorCallback, true);
                     }
                     break;
@@ -185,12 +190,13 @@ namespace FillWords.Phone._8._0
                             int countHints = (int)settings["countHints"];
                             settings["countHints"] = countHints + 20;
                             settings.Save();
+                            countHintsText.Text = (countHints + 20).ToString();
                         }, ErrorCallback, true);
                     }
                     break;
             }
-            int countHintsAfterPurchase = (int)settings["countHints"];
-            countHintsText.Text = countHintsAfterPurchase.ToString();
+            //int countHintsAfterPurchase = (int)settings["countHints"];
+            //countHintsText.Text = countHintsAfterPurchase.ToString();
             if (!settings.Contains("showAds"))
             {
                 settings.Add("showAds", false);
