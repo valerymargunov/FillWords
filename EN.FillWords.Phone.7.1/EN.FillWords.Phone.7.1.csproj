@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C167005A-A7FE-49BF-A069-80523AEF300B}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FillWords.Phone._8._0</RootNamespace>
+    <AssemblyName>EN.FillWords.Phone.7.1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>EN.FillWords.Phone._7._1.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>EN.FillWords.Phone._7._1.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;WINDOWS_PHONE7;FREE7;EN</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;WINDOWS_PHONE7;FREE7;EN</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\wp71\Coding4Fun.Toolkit.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\FillWords.Phone.8.0\CategoryPage.xaml.cs">
+      <Link>CategoryPage.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\DataAccess\BaseSingleByteEncoding.cs">
+      <Link>DataAccess\BaseSingleByteEncoding.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\DataAccess\DataManager.cs">
+      <Link>DataAccess\DataManager.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\DataAccess\Windows1251.cs">
+      <Link>DataAccess\Windows1251.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\DataAccess\Windows1251Encoding.cs">
+      <Link>DataAccess\Windows1251Encoding.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\GameViewPage.xaml.cs">
+      <Link>GameViewPage.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\Helpers\ColorsHelper.cs">
+      <Link>Helpers\ColorsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\Helpers\PopupMessage.cs">
+      <Link>Helpers\PopupMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LocalizedStrings.cs">
+      <Link>LocalizedStrings.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LogicGame\Category.cs">
+      <Link>LogicGame\Category.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LogicGame\Coordinate.cs">
+      <Link>LogicGame\Coordinate.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LogicGame\Dimension.cs">
+      <Link>LogicGame\Dimension.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LogicGame\GameView.cs">
+      <Link>LogicGame\GameView.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LogicGame\Level.cs">
+      <Link>LogicGame\Level.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LogicGame\Word.cs">
+      <Link>LogicGame\Word.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\LogicGame\WordMatrix.cs">
+      <Link>LogicGame\WordMatrix.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\Repositories\CategoryRepository.cs">
+      <Link>Repositories\CategoryRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\Repositories\GameViewRepository.cs">
+      <Link>Repositories\GameViewRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\FillWords.Phone.8.0\Repositories\WordRepository.cs">
+      <Link>Repositories\WordRepository.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\EN.FillWords.Phone.8.0\Content\words.txt">
+      <Link>Content\words.txt</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Audio\endlevel.wav">
+      <Link>Audio\endlevel.wav</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Content\categories.txt">
+      <Link>Content\categories.txt</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\879142-480x800.jpg">
+      <Link>Images\879142-480x800.jpg</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\Categories\3x3.png">
+      <Link>Images\Categories\3x3.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\Categories\4x4.png">
+      <Link>Images\Categories\4x4.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\Categories\5x5.png">
+      <Link>Images\Categories\5x5.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\Categories\6x6.png">
+      <Link>Images\Categories\6x6.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\Medal-100-yellow.png">
+      <Link>Images\Medal-100-yellow.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Cancel-50-magenta.png">
+      <Link>Images\menu\Cancel-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Lifebuoy-50-magenta.png">
+      <Link>Images\menu\Lifebuoy-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Like Filled-50-magenta.png">
+      <Link>Images\menu\Like Filled-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Money Bag-50-magenta.png">
+      <Link>Images\menu\Money Bag-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Share-50-magenta.png">
+      <Link>Images\menu\Share-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\IT.FillWords.Phone.8.0\Content\gameviews.txt">
+      <Link>Content\gameviews.txt</Link>
+    </Content>
+    <Content Include="fw-en-173.png" />
+    <Content Include="fw-en-62.png" />
+    <Content Include="README_FIRST.txt" />
+    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="..\FillWords.Phone.8.0\CategoryPage.xaml">
+      <Link>CategoryPage.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\FillWords.Phone.8.0\GameViewPage.xaml">
+      <Link>GameViewPage.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

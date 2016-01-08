@@ -409,6 +409,9 @@ namespace FillWords.Phone._8._0
 #if IT
             shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", "0585296f-f9c1-483e-9e99-795219e1410f"), UriKind.RelativeOrAbsolute);
 #endif
+#if EN
+            shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", "b8d768c7-11b5-4eea-8c3d-f8012148e97d"), UriKind.RelativeOrAbsolute);
+#endif
 #endif
             shareLinkTask.Message = AppResources.ShareMessage;
             shareLinkTask.Show();
