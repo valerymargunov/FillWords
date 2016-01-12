@@ -250,6 +250,15 @@ namespace FillWords.Phone._8._0.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to remove ads.
+        /// </summary>
+        public static string RemoveAds {
+            get {
+                return ResourceManager.GetString("RemoveAds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {

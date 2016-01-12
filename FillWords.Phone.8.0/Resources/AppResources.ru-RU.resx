@@ -197,4 +197,7 @@
   <data name="PurchaseError" xml:space="preserve">
     <value>Ошибка при покупке продукта: </value>
   </data>
+  <data name="RemoveAds" xml:space="preserve">
+    <value>удалить рекламу</value>
+  </data>
 </root>

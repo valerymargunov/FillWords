@@ -26,6 +26,9 @@ namespace FillWords.Phone._8._0
         CategoryRepository categoryRepository { get; set; }
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
         IList<Category> categories { get; set; }
+#if FREE8
+        FillWords.Phone._8._0.Advertising.AdsMob adsMob = null;
+#endif
 
         public CategoryPage()
         {
@@ -35,6 +38,17 @@ namespace FillWords.Phone._8._0
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            #region AdsMob Google
+#if FREE8
+            if (adsMob == null)
+            {
+#if RU
+                adsMob = new FillWords.Phone._8._0.Advertising.AdsMob();
+                adsMob.AddInterstitialAd("ca-app-pub-4981977246797551/8662213429");
+#endif
+            }
+#endif
+            #endregion
             categories = categoryRepository.GetCategories();
             GenerateCategories(categories, rootPanel);
             PopulateTopBarValues();
@@ -207,10 +221,14 @@ namespace FillWords.Phone._8._0
 #if FREE8
         private void RateReminder_TryReminderCompleted(object sender, AppPromo.RateReminderResult e)
         {
-            if (e.Runs == RateReminder.RunsBeforeReminder && !e.RatingShown)
+            if (e.Runs == RateReminder.RunsBeforeReminder)
             {
-                RateReminder.RunsBeforeReminder *= 2;
-                RateReminder.ResetCounters();
+                adsMob = new FillWords.Phone._8._0.Advertising.AdsMob();
+                if (!e.RatingShown)
+                {
+                    RateReminder.RunsBeforeReminder *= 2;
+                    RateReminder.ResetCounters();
+                }
             }
         }
 #endif
@@ -292,6 +310,20 @@ namespace FillWords.Phone._8._0
             //marketplaceDetailTask.ContentIdentifier = "d240f4cd-e4fc-405f-98a5-ea9002afff6d";
             //marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
             //marketplaceDetailTask.Show();
+#endif
+        }
+
+        private void removeAds_Click(object sender, RoutedEventArgs e)
+        {
+#if FREE8
+            StoreHelper.Donate("RemoveAds", (string productId) =>
+            {
+                if (!settings.Contains("productRemoveAds"))
+                {
+                    settings.Add("productRemoveAds", true);
+                    settings.Save();
+                }
+            }, null);
 #endif
         }
 

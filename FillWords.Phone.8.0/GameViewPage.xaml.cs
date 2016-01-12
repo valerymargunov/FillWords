@@ -431,6 +431,20 @@ namespace FillWords.Phone._8._0
 #endif
         }
 
+        private void removeAds_Click(object sender, RoutedEventArgs e)
+        {
+#if FREE8
+            StoreHelper.Donate("RemoveAds", (string productId) =>
+            {
+                if (!settings.Contains("productRemoveAds"))
+                {
+                    settings.Add("productRemoveAds", true);
+                    settings.Save();
+                }
+            }, null);
+#endif
+        }
+
         private void CheckEstimate()
         {
             try

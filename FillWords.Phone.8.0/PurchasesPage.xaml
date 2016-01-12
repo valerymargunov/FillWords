@@ -172,6 +172,15 @@
                     </Button>
                     <TextBlock Text="{Binding Path=LocalizedResources.Purchases, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="12" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
                 </StackPanel>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="removeAds" Style="{StaticResource BottomMenuButton}" Click="removeAds_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/menu/Price Tag USD-50-magenta.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="{Binding Path=LocalizedResources.RemoveAds, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="12" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

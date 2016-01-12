@@ -25,103 +25,6 @@ namespace FillWords.Phone._8._0
             PopulateTopBarValues();
         }
 
-        #region Top Menu
-        private void PopulateTopBarValues()
-        {
-            #region count completed levels
-            int lastLevelCompleted = (int)settings["lastLevelCompleted"];
-            int countLevels = (int)settings["countLevels"];
-            countLevelsCompleted.Text = string.Format("{0}/{1}", lastLevelCompleted + 1, countLevels);
-            #endregion
-
-            #region rating
-            int rating = (int)settings["rating"];
-            ratingText.Text = rating.ToString();
-            #endregion
-
-            #region count of hints
-            int countHints = (int)settings["countHints"];
-            countHintsText.Text = countHints.ToString();
-            #endregion
-        }
-        #endregion
-
-        #region Bottom Menu Buttons
-        private void exit_Click(object sender, RoutedEventArgs e)
-        {
-            CheckEstimate();
-        }
-
-        private void logOut_Click(object sender, RoutedEventArgs e)
-        {
-            //LogOut();
-        }
-
-        private void estimate_Click(object sender, RoutedEventArgs e)
-        {
-            var marketplaceReviewTask = new MarketplaceReviewTask();
-            marketplaceReviewTask.Show();
-        }
-
-        private void share_Click(object sender, RoutedEventArgs e)
-        {
-            var shareLinkTask = new ShareLinkTask();
-            shareLinkTask.Title = AppResources.ApplicationTitle;
-            shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", CurrentApp.AppId.ToString()), UriKind.RelativeOrAbsolute);
-            shareLinkTask.Message = AppResources.ShareMessage;
-            shareLinkTask.Show();
-        }
-
-        private void byu_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.Relative));
-        }
-
-        private void CheckEstimate()
-        {
-            try
-            {
-                const string isEstimated = "isEstimated";
-                if (!settings.Contains(isEstimated))
-                {
-                    var popup = new PopupMessage();
-                    popup.OnOkClick += delegate
-                    {
-                        settings.Add(isEstimated, true);
-                        settings.Save();
-                        var marketplaceReviewTask = new MarketplaceReviewTask();
-                        marketplaceReviewTask.Show();
-
-                    };
-                    popup.OnCancelClick += delegate
-                    {
-                        settings.Add(isEstimated, false);
-                        settings.Save();
-                    };
-                    popup.OnClick += delegate
-                    {
-                        Exit();
-                    };
-                    popup.Show(AppResources.EstimateMessage, true);
-                }
-                else
-                {
-                    Exit();
-                }
-            }
-            catch (Exception ex)
-            {
-                //var popup = new PopupMessage();
-                //popup.Show(String.Format(AppResources.Exception, ex.Message));
-            }
-        }
-
-        private void Exit()
-        {
-            Application.Current.Terminate();
-        }
-        #endregion
-
         private void panelHints_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             var border = sender as Border;
@@ -130,7 +33,7 @@ namespace FillWords.Phone._8._0
             {
                 case "panelHints20":
                     {
-                        StoreHelper.Donate("hints20", (string productId) => 
+                        StoreHelper.Donate("hints20", (string productId) =>
                         {
                             int countHints = (int)settings["countHints"];
                             settings["countHints"] = countHints + 20;
@@ -209,5 +112,117 @@ namespace FillWords.Phone._8._0
             var popup = new PopupMessage();
             popup.Show(AppResources.PurchaseError + ex.Message);
         }
+
+        #region Top Menu
+        private void PopulateTopBarValues()
+        {
+            #region count completed levels
+            int lastLevelCompleted = (int)settings["lastLevelCompleted"];
+            int countLevels = (int)settings["countLevels"];
+            countLevelsCompleted.Text = string.Format("{0}/{1}", lastLevelCompleted + 1, countLevels);
+            #endregion
+
+            #region rating
+            int rating = (int)settings["rating"];
+            ratingText.Text = rating.ToString();
+            #endregion
+
+            #region count of hints
+            int countHints = (int)settings["countHints"];
+            countHintsText.Text = countHints.ToString();
+            #endregion
+        }
+        #endregion
+
+        #region Bottom Menu Buttons
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            CheckEstimate();
+        }
+
+        private void logOut_Click(object sender, RoutedEventArgs e)
+        {
+            //LogOut();
+        }
+
+        private void estimate_Click(object sender, RoutedEventArgs e)
+        {
+            var marketplaceReviewTask = new MarketplaceReviewTask();
+            marketplaceReviewTask.Show();
+        }
+
+        private void share_Click(object sender, RoutedEventArgs e)
+        {
+            var shareLinkTask = new ShareLinkTask();
+            shareLinkTask.Title = AppResources.ApplicationTitle;
+            shareLinkTask.LinkUri = new Uri(String.Format("http://www.windowsphone.com/s?appid={0}", CurrentApp.AppId.ToString()), UriKind.RelativeOrAbsolute);
+            shareLinkTask.Message = AppResources.ShareMessage;
+            shareLinkTask.Show();
+        }
+
+        private void byu_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/PurchasesPage.xaml", UriKind.Relative));
+        }
+
+        private void removeAds_Click(object sender, RoutedEventArgs e)
+        {
+#if FREE8
+            StoreHelper.Donate("RemoveAds", (string productId) =>
+            {
+                if (!settings.Contains("productRemoveAds"))
+                {
+                    settings.Add("productRemoveAds", true);
+                    settings.Save();
+                }
+            }, null);
+#endif
+        }
+
+        private void CheckEstimate()
+        {
+            try
+            {
+                const string isEstimated = "isEstimated";
+                if (!settings.Contains(isEstimated))
+                {
+                    var popup = new PopupMessage();
+                    popup.OnOkClick += delegate
+                    {
+                        settings.Add(isEstimated, true);
+                        settings.Save();
+                        var marketplaceReviewTask = new MarketplaceReviewTask();
+                        marketplaceReviewTask.Show();
+
+                    };
+                    popup.OnCancelClick += delegate
+                    {
+                        settings.Add(isEstimated, false);
+                        settings.Save();
+                    };
+                    popup.OnClick += delegate
+                    {
+                        Exit();
+                    };
+                    popup.Show(AppResources.EstimateMessage, true);
+                }
+                else
+                {
+                    Exit();
+                }
+            }
+            catch (Exception ex)
+            {
+                //var popup = new PopupMessage();
+                //popup.Show(String.Format(AppResources.Exception, ex.Message));
+            }
+        }
+
+        private void Exit()
+        {
+            Application.Current.Terminate();
+        }
+        #endregion
+
     }
 }
