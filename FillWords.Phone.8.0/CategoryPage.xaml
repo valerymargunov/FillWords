@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    xmlns:AppPromo="clr-namespace:AppPromo;assembly=AppPromo.WP8"
+    
     xmlns:WPToolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     x:Class="FillWords.Phone._8._0.CategoryPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -48,7 +48,7 @@
             <ImageBrush ImageSource="/Images/879142-480x800.jpg"/>
         </Grid.Background>
 
-        <AppPromo:RateReminder x:Name="RateReminder" RunsBeforeReminder="3" TryReminderCompleted="RateReminder_TryReminderCompleted"  />
+        <!--<AppPromo:RateReminder x:Name="RateReminder" RunsBeforeReminder="3" TryReminderCompleted="RateReminder_TryReminderCompleted"  />-->
         
         <!--Верхнее меню-->
         <Grid Grid.Row="0" Margin="5">
@@ -78,7 +78,9 @@
                 <TextBlock Text="{Binding Path=LocalizedResources.Levels, Source={StaticResource LocalizedStrings}}" Margin="5" FontSize="50" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="White" FontWeight="Bold"/>
                 <StackPanel x:Name="rootPanel" Margin="0,10,0,10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top"></StackPanel>
             </StackPanel>
+            <Grid x:Name="adsGrid" VerticalAlignment="Bottom" HorizontalAlignment="Center">
 
+            </Grid>
         </Grid>
 
         <!--Нижнее меню-->

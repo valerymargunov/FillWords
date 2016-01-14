@@ -27,8 +27,11 @@ namespace FillWords.Phone._8._0
         CategoryRepository categoryRepository { get; set; }
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
         IList<Category> categories { get; set; }
+#if FREE7
+        MicrosoftAds microsoftAds { get; set; }
+#endif
 #if FREE8
-        FillWords.Phone._8._0.Advertising.AdsMob adsMob = null;
+        AdsMob adsMob = null;
 #endif
 
         public CategoryPage()
@@ -39,6 +42,14 @@ namespace FillWords.Phone._8._0
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+#if FREE7
+            if (microsoftAds == null)
+            {
+                microsoftAds = new MicrosoftAds();
+                microsoftAds.AddAds(adsGrid, "11569960");
+            }
+#endif
+
             #region AdsMob Google
 #if FREE8
             if (adsMob == null)

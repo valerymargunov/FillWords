@@ -51,12 +51,15 @@
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\wp71\Coding4Fun.Toolkit.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -65,6 +68,9 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\FillWords.Phone.8.0\Advertising\AdsMyGames.cs">
+      <Link>Advertising\AdsMyGames.cs</Link>
+    </Compile>
     <Compile Include="..\FillWords.Phone.8.0\CategoryPage.xaml.cs">
       <Link>CategoryPage.xaml.cs</Link>
     </Compile>
@@ -122,6 +128,7 @@
     <Compile Include="..\FillWords.Phone.8.0\Repositories\WordRepository.cs">
       <Link>Repositories\WordRepository.cs</Link>
     </Compile>
+    <Compile Include="Advertising\MicrosoftAds.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -155,6 +162,9 @@
     <Content Include="..\FillWords.Phone.8.0\Audio\endlevel.wav">
       <Link>Audio\endlevel.wav</Link>
     </Content>
+    <Content Include="..\FillWords.Phone.8.0\Audio\rightclick.wav">
+      <Link>Audio\rightclick.wav</Link>
+    </Content>
     <Content Include="..\FillWords.Phone.8.0\Content\categories.txt">
       <Link>Content\categories.txt</Link>
     </Content>
@@ -179,11 +189,38 @@
     <Content Include="..\FillWords.Phone.8.0\Images\Categories\6x6.png">
       <Link>Images\Categories\6x6.png</Link>
     </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\b_300.png">
+      <Link>Images\games\b_300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\cc-300.png">
+      <Link>Images\games\cc-300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\fw-300.png">
+      <Link>Images\games\fw-300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\fw-en-300.png">
+      <Link>Images\games\fw-en-300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\fw-it-300.png">
+      <Link>Images\games\fw-it-300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\mt-300.png">
+      <Link>Images\games\mt-300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\pm300.png">
+      <Link>Images\games\pm300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\tp-300.png">
+      <Link>Images\games\tp-300.png</Link>
+    </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\Medal-100-yellow.png">
       <Link>Images\Medal-100-yellow.png</Link>
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Cancel-50-magenta.png">
       <Link>Images\menu\Cancel-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Controller-50-magenta.png">
+      <Link>Images\menu\Controller-50-magenta.png</Link>
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Lifebuoy-50-magenta.png">
       <Link>Images\menu\Lifebuoy-50-magenta.png</Link>
@@ -193,6 +230,9 @@
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Money Bag-50-magenta.png">
       <Link>Images\menu\Money Bag-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Price Tag USD-50-magenta.png">
+      <Link>Images\menu\Price Tag USD-50-magenta.png</Link>
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Share-50-magenta.png">
       <Link>Images\menu\Share-50-magenta.png</Link>

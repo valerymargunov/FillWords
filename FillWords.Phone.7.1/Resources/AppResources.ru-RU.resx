@@ -197,4 +197,13 @@
   <data name="PurchaseError" xml:space="preserve">
     <value>Ошибка при покупке продукта: </value>
   </data>
+  <data name="AdsTitleMessage" xml:space="preserve">
+    <value>Хотите попробовать нашу новую игру?</value>
+  </data>
+  <data name="AllGames" xml:space="preserve">
+    <value>еще игры</value>
+  </data>
+  <data name="RemoveAds" xml:space="preserve">
+    <value>удалить рекламу</value>
+  </data>
 </root>

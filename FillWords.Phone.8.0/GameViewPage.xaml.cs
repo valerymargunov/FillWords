@@ -14,14 +14,13 @@ using System.Windows.Input;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
 using FillWords.Phone._8._0.Resources;
-//using Windows.ApplicationModel.Store;
 using FillWords.Phone._8._0.Helpers;
 using System.Threading;
-#if FREE8
-using Windows.ApplicationModel.Store;
-using FillWords.Phone._8._0.Advertising;
 using Microsoft.Xna.Framework.Audio;
 using System.IO;
+using FillWords.Phone._8._0.Advertising;
+#if FREE8
+using Windows.ApplicationModel.Store;
 #endif
 
 namespace FillWords.Phone._8._0
@@ -49,6 +48,9 @@ namespace FillWords.Phone._8._0
         List<Coordinate> ListHints { get; set; }
         int HintsEnumerator { get; set; }
         bool IsCompleted { get; set; }
+#if FREE7
+        MicrosoftAds microsoftAds { get; set; }
+#endif
 
         public GameViewPage()
         {
@@ -100,6 +102,14 @@ namespace FillWords.Phone._8._0
                 adsMyGames.ShowAd(() => { });
             }
             #endregion
+
+#if FREE7
+            if (microsoftAds == null)
+            {
+                microsoftAds = new MicrosoftAds();
+                microsoftAds.AddAds(adsGrid, "11569961");
+            }
+#endif
         }
 
         private void PopulateWords()

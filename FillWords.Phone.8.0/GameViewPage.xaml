@@ -74,6 +74,9 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Background="Transparent">
             <StackPanel x:Name="rootPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"></StackPanel>
+            <Grid x:Name="adsGrid" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+
+            </Grid>
         </Grid>
 
         <!--Нижнее меню-->
