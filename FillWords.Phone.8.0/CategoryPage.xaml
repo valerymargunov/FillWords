@@ -84,6 +84,16 @@
         <!--Нижнее меню-->
         <Grid Grid.Row="2" Margin="5">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="allGames" Style="{StaticResource BottomMenuButton}" Click="allGames_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/menu/Controller-50-magenta.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="{Binding Path=LocalizedResources.AllGames, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="12" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
+                </StackPanel>
+                
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button x:Name="exit" Style="{StaticResource BottomMenuButton}" Click="exit_Click" >
                         <Button.Background>
@@ -136,7 +146,7 @@
                         </Button.Background>
                     </Button>
                     <TextBlock Text="{Binding Path=LocalizedResources.RemoveAds, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" FontSize="12" FontFamily="Comic Sans MS" TextAlignment="Center" Foreground="#FFC20B8A" FontWeight="Bold"/>
-                </StackPanel>
+                </StackPanel>                
             </StackPanel>
         </Grid>
     </Grid>

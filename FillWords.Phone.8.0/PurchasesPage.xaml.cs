@@ -179,6 +179,14 @@ namespace FillWords.Phone._8._0
 #endif
         }
 
+        private void allGames_Click(object sender, RoutedEventArgs e)
+        {
+            var MmrketplaceSearchTask = new MarketplaceSearchTask();
+            MmrketplaceSearchTask.ContentType = MarketplaceContentType.Applications;
+            MmrketplaceSearchTask.SearchTerms = "valery margunov";
+            MmrketplaceSearchTask.Show();
+        }
+
         private void CheckEstimate()
         {
             try

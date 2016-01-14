@@ -18,6 +18,7 @@ using Microsoft.Phone.Tasks;
 using Windows.ApplicationModel.Store;
 #endif
 using FillWords.Phone._8._0.Helpers;
+using FillWords.Phone._8._0.Advertising;
 
 namespace FillWords.Phone._8._0
 {
@@ -327,6 +328,14 @@ namespace FillWords.Phone._8._0
 #endif
         }
 
+        private void allGames_Click(object sender, RoutedEventArgs e)
+        {
+            var MmrketplaceSearchTask = new MarketplaceSearchTask();
+            MmrketplaceSearchTask.ContentType = MarketplaceContentType.Applications;
+            MmrketplaceSearchTask.SearchTerms = "valery margunov";
+            MmrketplaceSearchTask.Show();
+        }
+
         private void CheckEstimate()
         {
             try
@@ -383,6 +392,5 @@ namespace FillWords.Phone._8._0
             catch { }
         }
         #endregion
-
     }
 }

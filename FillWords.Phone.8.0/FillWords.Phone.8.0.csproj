@@ -90,6 +90,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Advertising\AdsMob.cs" />
+    <Compile Include="Advertising\AdsMyGames.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -173,6 +174,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Audio\endlevel.wav" />
+    <Content Include="Audio\rightclick.wav" />
     <Content Include="Content\categories.txt" />
     <Content Include="Content\words.txt" />
     <Content Include="Content\gameviews.txt" />
@@ -182,8 +184,17 @@
     <Content Include="Images\Categories\4x4.png" />
     <Content Include="Images\Categories\5x5.png" />
     <Content Include="Images\Categories\6x6.png" />
+    <Content Include="Images\games\b_300.png" />
+    <Content Include="Images\games\cc-300.png" />
+    <Content Include="Images\games\fw-300.png" />
+    <Content Include="Images\games\fw-en-300.png" />
+    <Content Include="Images\games\fw-it-300.png" />
+    <Content Include="Images\games\mt-300.png" />
+    <Content Include="Images\games\pm300.png" />
+    <Content Include="Images\games\tp-300.png" />
     <Content Include="Images\Medal-100-yellow.png" />
     <Content Include="Images\menu\Cancel-50-magenta.png" />
+    <Content Include="Images\menu\Controller-50-magenta.png" />
     <Content Include="Images\menu\Lifebuoy-50-magenta.png" />
     <Content Include="Images\menu\Like Filled-50-magenta.png" />
     <Content Include="Images\menu\Money Bag-50-magenta.png" />

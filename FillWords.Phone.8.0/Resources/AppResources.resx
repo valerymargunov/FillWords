@@ -200,4 +200,10 @@
   <data name="RemoveAds" xml:space="preserve">
     <value>remove ads</value>
   </data>
+  <data name="AdsTitleMessage" xml:space="preserve">
+    <value>Do you want to try our new game?</value>
+  </data>
+  <data name="AllGames" xml:space="preserve">
+    <value>more games</value>
+  </data>
 </root>

@@ -61,6 +61,24 @@ namespace FillWords.Phone._8._0.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to try our new game?.
+        /// </summary>
+        public static string AdsTitleMessage {
+            get {
+                return ResourceManager.GetString("AdsTitleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to more games.
+        /// </summary>
+        public static string AllGames {
+            get {
+                return ResourceManager.GetString("AllGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AppBarButtonText {

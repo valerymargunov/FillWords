@@ -19,6 +19,9 @@ using FillWords.Phone._8._0.Helpers;
 using System.Threading;
 #if FREE8
 using Windows.ApplicationModel.Store;
+using FillWords.Phone._8._0.Advertising;
+using Microsoft.Xna.Framework.Audio;
+using System.IO;
 #endif
 
 namespace FillWords.Phone._8._0
@@ -39,7 +42,10 @@ namespace FillWords.Phone._8._0
         int CountWords { get; set; }
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
         int CountLevels { get; set; }
-        MediaElement LevelCompleted { get; set; }
+        //MediaElement LevelCompleted { get; set; }
+        //MediaElement FillLetter { get; set; }
+        SoundEffect LevelCompleted;
+        SoundEffect FillLetter;
         List<Coordinate> ListHints { get; set; }
         int HintsEnumerator { get; set; }
         bool IsCompleted { get; set; }
@@ -56,12 +62,28 @@ namespace FillWords.Phone._8._0
             TempListCurrentLetter = new List<string>();
             ListCurrentWords = new List<string>();
             CountLevels = (int)settings["countLevels"];
-            LevelCompleted = new MediaElement
+            using (Stream stream = Microsoft.Xna.Framework.TitleContainer.OpenStream("Audio/endlevel.wav"))
             {
-                Source = new Uri("/Audio/endlevel.wav", UriKind.RelativeOrAbsolute),
-                AutoPlay = false
-            };
-            LayoutRoot.Children.Add(LevelCompleted);
+                LevelCompleted = SoundEffect.FromStream(stream);
+                Microsoft.Xna.Framework.FrameworkDispatcher.Update();
+            }
+            //LevelCompleted = new MediaElement
+            //{
+            //    Source = new Uri("/Audio/endlevel.wav", UriKind.RelativeOrAbsolute),
+            //    AutoPlay = false
+            //};
+            using (Stream stream = Microsoft.Xna.Framework.TitleContainer.OpenStream("Audio/rightclick.wav"))
+            {
+                FillLetter = SoundEffect.FromStream(stream);
+                Microsoft.Xna.Framework.FrameworkDispatcher.Update();
+            }
+            //FillLetter = new MediaElement
+            //{
+            //    Source = new Uri("/Audio/rightclick.wav", UriKind.RelativeOrAbsolute),
+            //    AutoPlay = false
+            //};
+            //LayoutRoot.Children.Add(LevelCompleted);
+            //LayoutRoot.Children.Add(FillLetter);
             ListHints = new List<Coordinate>();
         }
 
@@ -69,6 +91,15 @@ namespace FillWords.Phone._8._0
         {
             PopulateWords();
             PopulateTopBarValues();
+
+            #region AdsMyGames
+            int lastLevelCompleted = (int)settings["lastLevelCompleted"];
+            if (lastLevelCompleted >= 0)
+            {
+                var adsMyGames = new AdsMyGames();
+                adsMyGames.ShowAd(() => { });
+            }
+            #endregion
         }
 
         private void PopulateWords()
@@ -199,14 +230,15 @@ namespace FillWords.Phone._8._0
                 var gridLetter = sender as Grid;
                 if (gridLetter.Background == GridLetterBrush)
                 {
-                    gridLetter.Background = FillGridLetterBrush;
+                    FillLetter.Play();
+                    gridLetter.Background = FillGridLetterBrush;                    
                     var letterBlock = gridLetter.Children[0] as TextBlock;
                     if (!TempListCurrentLetter.Contains(letterBlock.Name))
                     {
                         TempCurrentWord += letterBlock.Text.ToLower();
                         TempListCurrentLetter.Add(letterBlock.Name);
                         TempCurrentWordColor.Add((gridLetter.Tag as SolidColorBrush).Color);
-                    }
+                    }              
                 }
             }
         }
@@ -235,9 +267,10 @@ namespace FillWords.Phone._8._0
                 }
                 if (CountWords == ListCurrentWords.Count)
                 {
-                    LevelCompleted.MediaEnded += LevelComplete;
-                    LevelCompleted.MediaFailed += LevelComplete;
+                    //LevelCompleted.MediaEnded += LevelComplete;
+                    //LevelCompleted.MediaFailed += LevelComplete;
                     LevelCompleted.Play();
+                    LevelComplete(null, null);
                 }
             }
             else if (ListCurrentWords.Contains(TempCurrentWord) && TempCurrentWordColor.Where(x => x == TempCurrentWordColor[0]).Count() != TempCurrentWordColor.Count)
@@ -443,6 +476,14 @@ namespace FillWords.Phone._8._0
                 }
             }, null);
 #endif
+        }
+
+        private void allGames_Click(object sender, RoutedEventArgs e)
+        {
+            var MmrketplaceSearchTask = new MarketplaceSearchTask();
+            MmrketplaceSearchTask.ContentType = MarketplaceContentType.Applications;
+            MmrketplaceSearchTask.SearchTerms = "valery margunov";
+            MmrketplaceSearchTask.Show();
         }
 
         private void CheckEstimate()
