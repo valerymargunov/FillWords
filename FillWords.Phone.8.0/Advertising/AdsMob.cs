@@ -14,6 +14,7 @@ namespace FillWords.Phone._8._0.Advertising
     {
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
         private InterstitialAd interstitialAd;
+        bool IsForceTesting = false;
 
         public void AddAds(Grid grid, string adUnitID)
         {
@@ -29,7 +30,7 @@ namespace FillWords.Phone._8._0.Advertising
                         AdUnitID = adUnitID
                     };
                     AdRequest adRequest = new AdRequest();
-                    //adRequest.ForceTesting = true;
+                    adRequest.ForceTesting = IsForceTesting;
                     if (grid != null)
                     {
                         grid.Children.Add(bannerAd);
@@ -53,7 +54,7 @@ namespace FillWords.Phone._8._0.Advertising
                 {
                     interstitialAd = new InterstitialAd(adUnitID);
                     AdRequest adRequest = new AdRequest();
-                    //adRequest.ForceTesting = true;
+                    adRequest.ForceTesting = IsForceTesting;
                     interstitialAd.DismissingOverlay += OnDismissingOverlay;
                     interstitialAd.ReceivedAd += OnAdReceived;
                     interstitialAd.LoadAd(adRequest);

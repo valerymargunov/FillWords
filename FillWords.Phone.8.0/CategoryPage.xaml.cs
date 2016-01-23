@@ -45,8 +45,20 @@ namespace FillWords.Phone._8._0
 #if FREE7
             if (microsoftAds == null)
             {
+#if RU
                 microsoftAds = new MicrosoftAds();
                 microsoftAds.AddAds(adsGrid, "11569960");
+#endif
+
+#if IT
+                microsoftAds = new MicrosoftAds();
+                microsoftAds.AddAds(adsGrid, "11571231");
+#endif
+
+#if EN
+                microsoftAds = new MicrosoftAds();
+                microsoftAds.AddAds(adsGrid, "11571569");
+#endif
             }
 #endif
 
@@ -57,6 +69,16 @@ namespace FillWords.Phone._8._0
 #if RU
                 adsMob = new FillWords.Phone._8._0.Advertising.AdsMob();
                 adsMob.AddInterstitialAd("ca-app-pub-4981977246797551/8662213429");
+#endif
+
+#if IT
+                adsMob = new FillWords.Phone._8._0.Advertising.AdsMob();
+                adsMob.AddInterstitialAd("ca-app-pub-4981977246797551/4173674622");
+#endif
+
+#if EN
+                adsMob = new FillWords.Phone._8._0.Advertising.AdsMob();
+                adsMob.AddInterstitialAd("ca-app-pub-4981977246797551/3070214621");
 #endif
             }
 #endif

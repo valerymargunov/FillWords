@@ -197,4 +197,13 @@
   <data name="ThankYouForPurchase" xml:space="preserve">
     <value>Grazie per il tuo acquisto!</value>
   </data>
+  <data name="AdsTitleMessage" xml:space="preserve">
+    <value>Vuoi provare il nostro nuovo gioco?</value>
+  </data>
+  <data name="AllGames" xml:space="preserve">
+    <value>più giochi</value>
+  </data>
+  <data name="RemoveAds" xml:space="preserve">
+    <value>rimuovere gli annunci</value>
+  </data>
 </root>

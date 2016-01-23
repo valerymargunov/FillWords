@@ -106,9 +106,22 @@ namespace FillWords.Phone._8._0
 #if FREE7
             if (microsoftAds == null)
             {
+#if RU
                 microsoftAds = new MicrosoftAds();
                 microsoftAds.AddAds(adsGrid, "11569961");
+#endif
+
+#if IT
+                microsoftAds = new MicrosoftAds();
+                microsoftAds.AddAds(adsGrid, "11571232");
+#endif
+
+#if EN
+                microsoftAds = new MicrosoftAds();
+                microsoftAds.AddAds(adsGrid, "11571570");
+#endif
             }
+
 #endif
         }
 

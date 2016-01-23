@@ -139,6 +139,8 @@ namespace IT.FillWords.Phone._8._0
                 // An unhandled exception has occurred; break into the debugger
                 Debugger.Break();
             }
+            e.Handled = true;
+            return;
         }
 
         #region Phone application initialization

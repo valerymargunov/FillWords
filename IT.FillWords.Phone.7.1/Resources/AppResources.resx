@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdsTitleMessage" xml:space="preserve">
+    <value>Do you want to try our new game?</value>
+  </data>
+  <data name="AllGames" xml:space="preserve">
+    <value>more games</value>
+  </data>
   <data name="AppBarButtonText" xml:space="preserve">
     <value>add</value>
   </data>
@@ -179,6 +185,9 @@
   </data>
   <data name="Purchases" xml:space="preserve">
     <value>purchases</value>
+  </data>
+  <data name="RemoveAds" xml:space="preserve">
+    <value>remove ads</value>
   </data>
   <data name="ResourceFlowDirection" xml:space="preserve">
     <value>LeftToRight</value>

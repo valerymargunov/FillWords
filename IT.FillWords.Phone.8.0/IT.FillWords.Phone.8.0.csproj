@@ -89,6 +89,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\FillWords.Phone.8.0\Advertising\AdsMob.cs">
+      <Link>Advertising\AdsMob.cs</Link>
+    </Compile>
     <Compile Include="..\FillWords.Phone.8.0\CategoryPage.xaml.cs">
       <Link>CategoryPage.xaml.cs</Link>
     </Compile>
@@ -152,6 +155,7 @@
     <Compile Include="..\FillWords.Phone.8.0\Repositories\WordRepository.cs">
       <Link>Repositories\WordRepository.cs</Link>
     </Compile>
+    <Compile Include="Advertising\AdsMyGames.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -179,6 +183,9 @@
     <Content Include="..\FillWords.Phone.8.0\Audio\endlevel.wav">
       <Link>Audio\endlevel.wav</Link>
     </Content>
+    <Content Include="..\FillWords.Phone.8.0\Audio\rightclick.wav">
+      <Link>Audio\rightclick.wav</Link>
+    </Content>
     <Content Include="..\FillWords.Phone.8.0\Content\categories.txt">
       <Link>Content\categories.txt</Link>
     </Content>
@@ -197,11 +204,29 @@
     <Content Include="..\FillWords.Phone.8.0\Images\Categories\6x6.png">
       <Link>Images\Categories\6x6.png</Link>
     </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\b_300.png">
+      <Link>Images\games\b_300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\cc-300.png">
+      <Link>Images\games\cc-300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\mt-300.png">
+      <Link>Images\games\mt-300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\pm300.png">
+      <Link>Images\games\pm300.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\games\tp-300.png">
+      <Link>Images\games\tp-300.png</Link>
+    </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\Medal-100-yellow.png">
       <Link>Images\Medal-100-yellow.png</Link>
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Cancel-50-magenta.png">
       <Link>Images\menu\Cancel-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Controller-50-magenta.png">
+      <Link>Images\menu\Controller-50-magenta.png</Link>
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Lifebuoy-50-magenta.png">
       <Link>Images\menu\Lifebuoy-50-magenta.png</Link>
@@ -211,6 +236,9 @@
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Money Bag-50-magenta.png">
       <Link>Images\menu\Money Bag-50-magenta.png</Link>
+    </Content>
+    <Content Include="..\FillWords.Phone.8.0\Images\menu\Price Tag USD-50-magenta.png">
+      <Link>Images\menu\Price Tag USD-50-magenta.png</Link>
     </Content>
     <Content Include="..\FillWords.Phone.8.0\Images\menu\Share-50-magenta.png">
       <Link>Images\menu\Share-50-magenta.png</Link>
@@ -263,6 +291,9 @@
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.1.6.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="GoogleAds">
+      <HintPath>..\..\Google SDK for Windows Phone\GoogleMobileAdsSdkWindowsPhone8-6.5.13\lib\windowsphone8\GoogleAds.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
